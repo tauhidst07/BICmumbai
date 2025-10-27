@@ -1,24 +1,41 @@
 import React, { useState } from 'react'
 import logo from "../../assets/logo.png"
-import navlinks from '../../static/navlinks'
+// import navlinks from '../../static/navlinks'
 import { Link } from 'react-router-dom'
 import { HiMenu, HiX } from 'react-icons/hi'
 import { motion, AnimatePresence } from "framer-motion"
-import { X, Globe } from "lucide-react"
+import { X, Globe } from "lucide-react"; 
+import i18n from "../../i18n";
+import { useTranslation } from 'react-i18next'
 
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false)
-  const [language, setLanguage] = useState('ENG') // 'ENG' or 'URD'
-  const [showLangMenu, setShowLangMenu] = useState(false)
+  const [language, setLanguage] = useState('ENG') 
+  const [showLangMenu, setShowLangMenu] = useState(false); 
+
+  const {t} = useTranslation(); 
+  const navlinks = [
+  { value: t("nav.about"), path: "about" },
+  { value: t("nav.activities"), path: "activities" },
+  { value: t("nav.projects"), path: "projects" },
+  { value: t("nav.contact"), path: "contact" },
+];
 
   const selectLanguage = (lang) => {
     setLanguage(lang)
     setShowLangMenu(false)
-    // Add your language switching logic here
+    // Add your language switching logic here 
+    if (lang === "ENG") {
+    i18n.changeLanguage("en");
+    // document.dir = "ltr"; // left-to-right layout
+  } else {
+    i18n.changeLanguage("ur");
+    // document.dir = "rtl"; // right-to-left layout
+  }
   }
 
   return (
-    <nav className="bg-white shadow-lg sticky top-0 z-50">
+    <nav className="bg-white shadow-lg sticky top-0 z-50 ">
       {/* Top accent line */}
       <div 
         className="h-1 w-full"
@@ -60,16 +77,12 @@ const Navbar = () => {
         </Link>
 
         {/* Navigation links - Desktop */}
-        <div className='hidden md:flex space-x-1 lg:space-x-2 items-center'>
+        <div className={`hidden md:flex space-x-1 lg:space-x-2 items-center ${language=="URD"?'font-noto':'font-poppins'} text-primaryCustom`}>
           {navlinks.map((link, i) => (
             <Link 
               to={link.path} 
               key={i} 
               className="px-4 py-2 rounded-lg font-medium transition-colors duration-300 hover:text-secondaryCustom"
-              style={{
-                fontFamily: "var(--font-poppins)",
-                color: "var(--color-primaryCustom)"
-              }}
             >
               {link.value}
             </Link>
@@ -228,7 +241,7 @@ const Navbar = () => {
               </motion.button>
 
               {/* Navigation links */}
-              <nav className="flex flex-col justify-center h-full px-8 space-y-1">
+              <nav className="flex flex-col justify-center  h-full px-8 space-y-1">
                 {navlinks.map((link, i) => (
                   <motion.div
                     key={i}
@@ -251,11 +264,8 @@ const Navbar = () => {
                         }}
                       >
                         <span
-                          className="text-xl font-medium block"
-                          style={{
-                            fontFamily: "var(--font-poppins)",
-                            color: "var(--color-white)"
-                          }}
+                          className={`text-xl font-medium block text-center ${language=="ENG"?"font-poppins":"font-noto"} text-white`}
+                          
                         >
                           {link.value}
                         </span>

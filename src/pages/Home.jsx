@@ -4,16 +4,19 @@ import Quicklink from '../components/layout/Quicklink'
 import Welcome from '../components/layout/Welcome'
 import Activities from '../components/layout/Activities'
 import CTA from '../components/layout/CTA'
+import AppWithSplash from '../components/loader/AppWithSplash'
 
 const Home = () => {
-    return (
+    return ( 
+        <AppWithSplash>
         <div className=''> 
             <Hero />
             <Quicklink />
             <Welcome />
             <Activities />
             <CTA />
-        </div>
+        </div> 
+        </AppWithSplash>
     )
 }
 

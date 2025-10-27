@@ -13,19 +13,20 @@ import About from './pages/About'
 import Home from './pages/Home'
 import NotFound from './pages/NotFound'
 import Contact from './pages/Contact'
+import AppWithSplash from './components/loader/AppWithSplash'
 
-const App = () => {  
+const App = () => {
 
 
   return (
-    <Routes>  
-      <Route path='*' element={<NotFound/>}/>
-       <Route path='/' element={<MainLayout/>}> 
-         <Route index element={<Home/>} /> 
-         <Route path='about' element={<About/>} /> 
-         <Route path='contact' element={<Contact/>} />
-       </Route>
-    </Routes>
+      <Routes>
+        <Route path='*' element={<NotFound />} />
+        <Route path='/' element={<MainLayout />}>
+          <Route index element={<Home />} />
+          <Route path='about' element={<About />} />
+          <Route path='contact' element={<Contact />} />
+        </Route>
+      </Routes>
   )
 }
 

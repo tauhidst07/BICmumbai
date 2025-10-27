@@ -1,7 +1,8 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { motion } from "framer-motion";
 import { Calendar, Users, Heart, BookOpen, Award, Target, Globe } from "lucide-react";
 import StatCard from "../components/common/StatCard";
+import SplashScreen from "../components/loader/SplashScreen";
 
 const About = () => {
   const milestones = [
@@ -10,7 +11,8 @@ const About = () => {
     { year: "2015", title: "New Facility", description: "Inaugurated our current comprehensive center" },
     { year: "2020", title: "Digital Era", description: "Introduced online programs and virtual services" },
     { year: "2025", title: "Growing Strong", description: "Serving 2,000+ community members with 15+ programs" }
-  ];
+  ]; 
+
 
   const values = [
     {
@@ -33,7 +35,8 @@ const About = () => {
       title: "Inclusivity",
       description: "Welcoming all backgrounds and cultures"
     }
-  ];
+  ]; 
+
 
   return (
     <>
