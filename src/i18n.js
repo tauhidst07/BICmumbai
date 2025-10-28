@@ -10,7 +10,7 @@ i18n
       en: { translation: en },
       ur: { translation: ur },
     },
-    lng: "en", // default
+    lng: localStorage.getItem("language")==="URD"?"ur":"en",
     fallbackLng: "en",
     interpolation: { escapeValue: false },
   });

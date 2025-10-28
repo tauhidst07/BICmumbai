@@ -1,43 +1,48 @@
-import React, { useState } from 'react'
+import React, { useContext, useEffect, useMemo, useState } from 'react'
 import logo from "../../assets/logo.png"
 // import navlinks from '../../static/navlinks'
 import { Link } from 'react-router-dom'
 import { HiMenu, HiX } from 'react-icons/hi'
 import { motion, AnimatePresence } from "framer-motion"
-import { X, Globe } from "lucide-react"; 
+import { X, Globe } from "lucide-react";
 import i18n from "../../i18n";
 import { useTranslation } from 'react-i18next'
+import AppContext from '../../context/AppContext'
 
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false)
-  const [language, setLanguage] = useState('ENG') 
+  const { language, setLanguage } = useContext(AppContext);
+  const { loading, setLoading } = useContext(AppContext);
   const [showLangMenu, setShowLangMenu] = useState(false); 
+  const {showSplash,setShowSplash} = useContext(AppContext); 
+  const { t } = useTranslation();
+  const navlinks = useMemo(() => {
+    return [
+      { value: t("nav.about"), path: "about" },
+      { value: t("nav.activities"), path: "activities" },
+      { value: t("nav.projects"), path: "projects" },
+      { value: t("nav.contact"), path: "contact" },
+    ]
+  }, [language]);
 
-  const {t} = useTranslation(); 
-  const navlinks = [
-  { value: t("nav.about"), path: "about" },
-  { value: t("nav.activities"), path: "activities" },
-  { value: t("nav.projects"), path: "projects" },
-  { value: t("nav.contact"), path: "contact" },
-];
-
-  const selectLanguage = (lang) => {
+  const selectLanguage = (lang) => { 
+    setShowSplash(true);
     setLanguage(lang)
-    setShowLangMenu(false)
+    setShowLangMenu(false) 
     // Add your language switching logic here 
     if (lang === "ENG") {
-    i18n.changeLanguage("en");
-    // document.dir = "ltr"; // left-to-right layout
-  } else {
-    i18n.changeLanguage("ur");
-    // document.dir = "rtl"; // right-to-left layout
-  }
-  }
+      i18n.changeLanguage("en");
+    } else {
+      i18n.changeLanguage("ur");
+    }
+    localStorage.setItem("language", lang); 
+  } 
+
 
   return (
     <nav className="bg-white shadow-lg sticky top-0 z-50 ">
       {/* Top accent line */}
-      <div 
+      <div
         className="h-1 w-full"
         style={{
           background: "linear-gradient(to right, var(--color-primaryCustom), var(--color-secondaryCustom), var(--color-primaryCustom))"
@@ -47,15 +52,15 @@ const Navbar = () => {
       <div className='max-w-7xl mx-auto px-4 flex justify-between h-20 items-center'>
         {/* Logo */}
         <Link to={"/"} className='flex gap-x-3 cursor-pointer items-center group'>
-          <motion.img 
-            src={logo} 
-            alt="bic mumbai" 
+          <motion.img
+            src={logo}
+            alt="bic mumbai"
             className='w-[55px] h-[55px] object-contain'
             whileHover={{ scale: 1.05, rotate: 5 }}
             transition={{ duration: 0.3 }}
           />
           <div>
-            <h1 
+            <h1
               className='text-[1.1rem] lg:text-[1.4rem] font-bold leading-tight'
               style={{
                 fontFamily: "var(--font-playfairDisplay)",
@@ -64,7 +69,7 @@ const Navbar = () => {
             >
               Bazi-lul-khair
             </h1>
-            <p 
+            <p
               className='text-[0.65rem] lg:text-[0.75rem] font-medium'
               style={{
                 fontFamily: "var(--font-poppins)",
@@ -77,11 +82,11 @@ const Navbar = () => {
         </Link>
 
         {/* Navigation links - Desktop */}
-        <div className={`hidden md:flex space-x-1 lg:space-x-2 items-center ${language=="URD"?'font-noto':'font-poppins'} text-primaryCustom`}>
+        <div className={`hidden md:flex space-x-1 lg:space-x-2 items-center ${language == "URD" ? 'font-noto' : 'font-poppins'} text-primaryCustom`}>
           {navlinks.map((link, i) => (
-            <Link 
-              to={link.path} 
-              key={i} 
+            <Link
+              to={link.path}
+              key={i}
               className="px-4 py-2 rounded-lg font-medium transition-colors duration-300 hover:text-secondaryCustom"
             >
               {link.value}
@@ -102,7 +107,7 @@ const Navbar = () => {
                 color: "var(--color-primaryCustom)",
                 backgroundColor: showLangMenu ? "var(--color-light-accent)" : "transparent"
               }}
-              whileHover={{ 
+              whileHover={{
                 backgroundColor: "var(--color-light-accent)",
                 scale: 1.05
               }}
@@ -118,11 +123,11 @@ const Navbar = () => {
               {showLangMenu && (
                 <>
                   {/* Invisible backdrop to close menu */}
-                  <div 
+                  <div
                     className="fixed inset-0 z-30"
                     onClick={() => setShowLangMenu(false)}
                   />
-                  
+
                   <motion.div
                     className="absolute right-0 mt-2 w-32 bg-white rounded-lg shadow-lg overflow-hidden z-40"
                     initial={{ opacity: 0, y: -10, scale: 0.95 }}
@@ -164,14 +169,14 @@ const Navbar = () => {
           </div>
 
           {/* Donate Button - Hidden on small mobile */}
-          <motion.button 
+          <motion.button
             className="hidden sm:flex items-center px-4 lg:px-6 py-2 rounded-lg font-semibold text-sm lg:text-base transition-all duration-300 shadow-md"
             style={{
               fontFamily: "var(--font-poppins)",
               backgroundColor: "var(--color-secondaryCustom)",
               color: "var(--color-white)"
             }}
-            whileHover={{ 
+            whileHover={{
               scale: 1.05,
               boxShadow: "0 8px 20px rgba(199, 151, 50, 0.4)"
             }}
@@ -264,8 +269,8 @@ const Navbar = () => {
                         }}
                       >
                         <span
-                          className={`text-xl font-medium block text-center ${language=="ENG"?"font-poppins":"font-noto"} text-white`}
-                          
+                          className={`text-xl font-medium block text-center ${language == "ENG" ? "font-poppins" : "font-noto"} text-white`}
+
                         >
                           {link.value}
                         </span>

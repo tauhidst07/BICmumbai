@@ -1,20 +1,23 @@
 import { motion } from "framer-motion";
 import Divider from "../common/Divider";
+import { useTranslation } from "react-i18next";
+import { useContext } from "react";
+import AppContext from "../../context/AppContext";
 
 const Welcome = () => {
+    const { t } = useTranslation();
+    const { language } = useContext(AppContext);
     return (
-        <section 
-            className="py-20 md:py-28 relative overflow-hidden"
-            style={{ backgroundColor: "var(--color-white)" }}
+        <section
+            className="py-20 md:py-28 relative overflow-hidden bg-white"
         >
             {/* Decorative background elements */}
-            <div 
-                className="absolute top-0 right-0 w-96 h-96 rounded-full blur-3xl opacity-5"
-                style={{ backgroundColor: "var(--color-secondaryCustom)" }}
+            <div
+                className="absolute top-0 right-0 w-96 h-96 rounded-full blur-3xl opacity-5 bg-secondaryCustom"
             />
-            <div 
-                className="absolute bottom-0 left-0 w-80 h-80 rounded-full blur-3xl opacity-5"
-                style={{ backgroundColor: "var(--color-primaryCustom)" }}
+            <div
+                className="absolute bottom-0 left-0 w-80 h-80 rounded-full blur-3xl opacity-5 bg-primaryCustom"
+
             />
 
             <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
@@ -26,32 +29,22 @@ const Welcome = () => {
                     transition={{ duration: 0.7 }}
                     className="text-center mb-16"
                 >
-                    <motion.h2 
-                        className="text-3xl sm:text-4xl md:text-5xl font-bold mb-4"
-                        style={{
-                            fontFamily: "var(--font-playfairDisplay)",
-                            color: "var(--color-primaryCustom)",
-                            letterSpacing: "-0.02em"
-                        }}
+                    <motion.h2
+                        className={`text-3xl  font-bold  tracking-[-0.02em] text-primaryCustom mb-4 ${language === "ENG" ? "font-playfairDisplay md:text-5xl sm:text-4xl " : "font-noto sm:text-3xl  pb-2"}`}
                     >
-                        Welcome to Our Center
+                        {t("welcomeSection.heading")}
                     </motion.h2>
-                    
+
                     {/* Elegant decorative divider */}
-                    <Divider/>
+                    <Divider />
                     <motion.p
-                        className="text-base md:text-lg max-w-2xl mx-auto"
-                        style={{
-                            fontFamily: "var(--font-poppins)",
-                            color: "var(--color-secondaryCustom)",
-                            fontWeight: 500
-                        }}
+                        className={`text-base md:text-lg max-w-2xl mx-auto font-medium text-secondaryCustom ${language === "ENG" ? "font-poppins" : "font-noto"}`}
                         initial={{ opacity: 0 }}
                         whileInView={{ opacity: 1 }}
                         viewport={{ once: true }}
                         transition={{ duration: 0.7, delay: 0.4 }}
                     >
-                        A Beacon of Faith, Knowledge, and Community
+                        {t("welcomeSection.subheading")}
                     </motion.p>
                 </motion.div>
 
@@ -59,18 +52,16 @@ const Welcome = () => {
                 <div className="relative">
                     {/* Left accent bar */}
                     <motion.div
-                        className="hidden md:block absolute left-0 top-1/2 -translate-y-1/2 w-1 h-32 rounded-full"
-                        style={{ backgroundColor: "var(--color-light-accent)" }}
+                        className="hidden md:block absolute left-0 top-1/2 -translate-y-1/2 w-1 h-32 rounded-full bg-light-accent"
                         initial={{ scaleY: 0 }}
                         whileInView={{ scaleY: 1 }}
                         viewport={{ once: true }}
                         transition={{ duration: 0.6, delay: 0.5 }}
                     />
-                    
+
                     {/* Right accent bar */}
                     <motion.div
-                        className="hidden md:block absolute right-0 top-1/2 -translate-y-1/2 w-1 h-32 rounded-full"
-                        style={{ backgroundColor: "var(--color-light-accent)" }}
+                        className="hidden md:block absolute right-0 top-1/2 -translate-y-1/2 w-1 h-32 rounded-full bg-light-accent"
                         initial={{ scaleY: 0 }}
                         whileInView={{ scaleY: 1 }}
                         viewport={{ once: true }}
@@ -86,31 +77,15 @@ const Welcome = () => {
                         className="text-center px-4 md:px-12"
                     >
                         <div className="space-y-6 mb-12">
-                            <p 
-                                className="text-lg sm:text-xl leading-relaxed max-w-4xl mx-auto"
-                                style={{
-                                    fontFamily: "var(--font-poppins)",
-                                    color: "#4B5563",
-                                    fontWeight: 400,
-                                    lineHeight: "1.8"
-                                }}
+                            <p
+                                className={`text-lg sm:text-xl  max-w-4xl mx-auto text-[#4B5563] font-normal ${language === "ENG" ? "font-poppins leading-relaxed" : "font-noto leading-[2.2]"} `}
                             >
-                                Markaz Bazil al-Khair Islamic Center is a beacon of faith, knowledge, and community service. 
-                                Established to serve the Muslim community and beyond, we strive to promote Islamic values, 
-                                education, and social harmony.
+                                {t("welcomeSection.description1")}
                             </p>
-                            <p 
-                                className="text-lg sm:text-xl leading-relaxed max-w-4xl mx-auto"
-                                style={{
-                                    fontFamily: "var(--font-poppins)",
-                                    color: "#4B5563",
-                                    fontWeight: 400,
-                                    lineHeight: "1.8"
-                                }}
+                            <p
+                                className={`text-lg sm:text-xl  max-w-4xl mx-auto text-[#4B5563] font-normal ${language === "ENG" ? "font-poppins leading-relaxed" : "font-noto leading-[2.2]"} `}
                             >
-                                Our center offers daily prayers, Quran classes, educational programs, and community outreach 
-                                initiatives. We welcome people from all backgrounds to learn, grow, and connect in a peaceful 
-                                and inclusive environment.
+                                {t("welcomeSection.description2")}
                             </p>
                         </div>
 
@@ -136,7 +111,7 @@ const Welcome = () => {
                                     viewport={{ once: true }}
                                     transition={{ duration: 0.5, delay: 0.6 + idx * 0.1 }}
                                 >
-                                    <div 
+                                    <div
                                         className="text-3xl md:text-4xl font-bold mb-2"
                                         style={{
                                             fontFamily: "var(--font-playfairDisplay)",
@@ -145,7 +120,7 @@ const Welcome = () => {
                                     >
                                         {stat.number}
                                     </div>
-                                    <div 
+                                    <div
                                         className="text-sm md:text-base font-medium"
                                         style={{
                                             fontFamily: "var(--font-poppins)",
@@ -174,15 +149,15 @@ const Welcome = () => {
                                     color: "var(--color-white)",
                                     boxShadow: "0 4px 20px rgba(199, 151, 50, 0.3)"
                                 }}
-                                whileHover={{ 
-                                    scale: 1.05, 
-                                    boxShadow: "0 8px 30px rgba(199, 151, 50, 0.4)" 
+                                whileHover={{
+                                    scale: 1.05,
+                                    boxShadow: "0 8px 30px rgba(199, 151, 50, 0.4)"
                                 }}
                                 whileTap={{ scale: 0.98 }}
                             >
                                 Learn About Us
                             </motion.button>
-                            
+
                             <motion.button
                                 className="px-8 py-4 rounded-xl font-semibold text-base border-2 w-full sm:w-auto transition-all duration-300"
                                 style={{
@@ -191,7 +166,7 @@ const Welcome = () => {
                                     color: "var(--color-primaryCustom)",
                                     backgroundColor: "transparent"
                                 }}
-                                whileHover={{ 
+                                whileHover={{
                                     scale: 1.05,
                                     backgroundColor: "var(--color-primaryCustom)",
                                     color: "var(--color-white)"

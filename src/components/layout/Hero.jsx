@@ -1,12 +1,14 @@
-import React, { useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import fallbackImage from "../../assets/background.jpg";
 import useImages from "../../hooks/useImages";
 import { motion, AnimatePresence } from "framer-motion";
 import Divider from "../common/Divider";
+import AppContext from "../../context/AppContext";
 
 const Hero = () => {
   const { images } = useImages();
   const [background, setBackground] = useState(fallbackImage);
+  const { language } = useContext(AppContext);
 
   useEffect(() => {
     if (!images || images.length === 0) return;
@@ -51,7 +53,7 @@ const Hero = () => {
 
       {/* Sophisticated gradient overlay - darker for better text contrast */}
       <div className="absolute inset-0 bg-gradient-to-b from-[rgba(61,36,11,0.3)] via-[rgba(61,36,11,0.5)] to-[rgba(61,36,11,0.75)]" />
-      
+
       {/* Subtle vignette effect */}
       <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,transparent_0%,rgba(0,0,0,0.4)_100%)]" />
 
@@ -62,16 +64,13 @@ const Hero = () => {
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, delay: 0.2 }}
         >
-          <h1 
-            className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold mb-6 tracking-wide"
+          <h1
+            className={`text-4xl sm:text-5xl md:text-6xl  font-bold mb-6 tracking-wide ${language === "ENG" ? "font-playfairDisplay lg:text-7xl" : "font-noto lg:text-6xl"} text-white`}
             style={{
-              fontFamily: "var(--font-playfairDisplay)",
-              color: "var(--color-white)",
               textShadow: "0 4px 12px rgba(0,0,0,0.7), 0 2px 4px rgba(0,0,0,0.5)",
-              letterSpacing: "0.02em"
             }}
           >
-            Markaz Bazi-lul-khair
+            {language === "ENG" ? "Markaz Bazi-lul-khair" : "مرکز باذل الخیر"}
           </h1>
         </motion.div>
 
@@ -80,35 +79,29 @@ const Hero = () => {
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, delay: 0.5 }}
         >
-          <p 
-            className="text-xl sm:text-2xl md:text-3xl font-light mb-10"
-            style={{
-              fontFamily: "var(--font-poppins)",
-              color: "var(--color-secondaryCustom)",
-              textShadow: "0 2px 8px rgba(0,0,0,0.8)",
-              letterSpacing: "0.05em"
-            }}
+          <p
+            className={`text-xl sm:text-2xl font-light mb-10 text-secondaryCustom ${language==="ENG"?"font-poppins  md:text-3xl ":"font-noto pt-8 md:text-2xl"} `}
           >
-            Come to Knowledge, Come to Khair
+            {language === "ENG"? "Come to Knowledge, Come to Khair": "علم کی طرف آؤ، خیر کی طرف آؤ"}
           </p>
         </motion.div>
 
-        {/* Decorative divider */} 
+        {/* Decorative divider */}
         <motion.div
           className="flex items-center justify-center gap-4 mb-8"
           initial={{ opacity: 0, scale: 0.8 }}
           animate={{ opacity: 1, scale: 1 }}
           transition={{ duration: 0.6, delay: 0.8 }}
         >
-          <div 
+          <div
             className="h-[2px] w-16 md:w-24"
             style={{ backgroundColor: "var(--color-secondaryCustom)" }}
           />
-          <div 
+          <div
             className="w-2 h-2 rounded-full"
             style={{ backgroundColor: "var(--color-secondaryCustom)" }}
           />
-          <div 
+          <div
             className="h-[2px] w-16 md:w-24"
             style={{ backgroundColor: "var(--color-secondaryCustom)" }}
           />
@@ -121,11 +114,8 @@ const Hero = () => {
           transition={{ duration: 0.8, delay: 1 }}
         >
           <button
-            className="px-8 py-3 rounded-full font-semibold text-base md:text-lg transition-all duration-300 hover:scale-105 hover:shadow-2xl"
+            className="px-8 py-3 rounded-full bg-secondaryCustom text-white font-semibold text-base md:text-lg transition-all duration-300 hover:scale-105 hover:shadow-2xl"
             style={{
-              fontFamily: "var(--font-poppins)",
-              backgroundColor: "var(--color-secondaryCustom)",
-              color: "var(--color-white)",
               boxShadow: "0 4px 20px rgba(199, 151, 50, 0.4)"
             }}
           >
@@ -140,7 +130,7 @@ const Hero = () => {
         animate={{ y: [0, 10, 0] }}
         transition={{ duration: 2, repeat: Infinity, ease: "easeInOut" }}
       >
-        <div 
+        <div
           className="w-6 h-10 rounded-full border-2 flex items-start justify-center p-2"
           style={{ borderColor: "var(--color-light-accent)" }}
         >

@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react'
+import React, { useContext, useEffect, useState } from 'react'
 import Navbar from './components/layout/Navbar'
 import Footer from './components/layout/Footer'
 import useImages from './hooks/useImages'
@@ -14,9 +14,30 @@ import Home from './pages/Home'
 import NotFound from './pages/NotFound'
 import Contact from './pages/Contact'
 import AppWithSplash from './components/loader/AppWithSplash'
+import { useSSR } from 'react-i18next'
+import SplashScreen from './components/loader/SplashScreen'
+import AppContext from './context/AppContext'
+import i18n from './i18n'
 
 const App = () => {
 
+  const {showSplash,setShowSplash} = useContext(AppContext); 
+
+  useEffect(()=>{ 
+    let timer;
+    if(showSplash){
+      timer = setTimeout(()=>{
+          setShowSplash(false);
+      })
+    } 
+    return ()=>{
+      clearTimeout(timer);
+    }
+  },[showSplash])
+
+  if(showSplash){
+    return <SplashScreen/>
+  }
 
   return (
       <Routes>
