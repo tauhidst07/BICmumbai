@@ -10,6 +10,38 @@
     "subheading": "A Beacon of Faith, Knowledge, and Community",
     "description1": "Markaz Bazil al-Khair Islamic Center is a beacon of faith, knowledge, and community service. Established to serve the Muslim community and beyond, we strive to promote Islamic values, education, and social harmony.",
     "description2": "Our center offers daily prayers, Quran classes, educational programs, and community outreach initiatives. We welcome people from all backgrounds to learn, grow, and connect in a peaceful and inclusive environment."
-  }
+  }, 
+  "cta":{
+    "heading":"Join Us in Making a Difference", 
+    "description":"Your support helps us continue our mission of serving the community through education spiritual guidance, and charitable work."
+  }, 
+  "quickLinks": [
+    {
+      "name": "About",
+      "desc": "Learn about our mission", 
+      "path":"/about"
+    },
+    {
+      "name": "Activities",
+      "desc": "Daily prayers & events", 
+      "path":"/activities"
+    },
+    {
+      "name": "Projects",
+      "desc": "Community initiatives", 
+      "path":"/projects"
+    },
+    {
+      "name": "Donate",
+      "desc": "Support our work", 
+      "path":"/donate"
+    },
+    {
+      "name": "Contact",
+      "desc": "Get in touch", 
+      "path":"/contact"
+    }
+  ]
+   
 
 }

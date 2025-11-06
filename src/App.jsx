@@ -18,10 +18,16 @@ import { useSSR } from 'react-i18next'
 import SplashScreen from './components/loader/SplashScreen'
 import AppContext from './context/AppContext'
 import i18n from './i18n'
+import ActivityDetails from './pages/ActivityDetails'
+import DonatePage from './pages/DonatePage'
+import ActivitiesPage from './pages/ActivitiesPage'
+import client from './utility/contentfulClient'
 
 const App = () => {
 
-  const {showSplash,setShowSplash} = useContext(AppContext); 
+  const {showSplash,setShowSplash} = useContext(AppContext);  
+  
+
 
   useEffect(()=>{ 
     let timer;
@@ -45,7 +51,10 @@ const App = () => {
         <Route path='/' element={<MainLayout />}>
           <Route index element={<Home />} />
           <Route path='about' element={<About />} />
-          <Route path='contact' element={<Contact />} />
+          <Route path='contact' element={<Contact />} /> 
+          <Route path='test' element = {<ActivityDetails/>}/> 
+          <Route path='donate' element={<DonatePage/>} /> 
+          <Route path='activities' element={<ActivitiesPage/>}/>
         </Route>
       </Routes>
   )

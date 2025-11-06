@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { motion } from 'framer-motion';
 import { MapPin, Phone, Mail, Clock, Send, MessageSquare } from 'lucide-react';
+import HeroSection from '../components/common/HeroSection';
 
 const Contact = () => {
     const [formData, setFormData] = useState({
@@ -71,44 +72,7 @@ const Contact = () => {
     return (
         <div className="min-h-screen" style={{ backgroundColor: "#FFF8F0" }}>
             {/* Hero Section */}
-            <section 
-                className="py-20 relative overflow-hidden"
-                style={{
-                    background: "linear-gradient(135deg, var(--color-primaryCustom) 0%, var(--color-secondaryCustom) 100%)"
-                }}
-            >
-                <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center relative z-10">
-                    <motion.div
-                        initial={{ opacity: 0, y: 30 }}
-                        animate={{ opacity: 1, y: 0 }}
-                        transition={{ duration: 0.7 }}
-                    >
-                        <h1 
-                            className="text-4xl md:text-5xl lg:text-6xl font-bold mb-4"
-                            style={{
-                                fontFamily: "var(--font-playfairDisplay)",
-                                color: "var(--color-white)"
-                            }}
-                        >
-                            Get In Touch
-                        </h1>
-                        <div className="flex items-center justify-center gap-3 mb-6">
-                            <div className="h-[2px] w-16" style={{ backgroundColor: "var(--color-bright-accent)" }} />
-                            <div className="w-2 h-2 rounded-full" style={{ backgroundColor: "var(--color-bright-accent)" }} />
-                            <div className="h-[2px] w-16" style={{ backgroundColor: "var(--color-bright-accent)" }} />
-                        </div>
-                        <p 
-                            className="text-lg md:text-xl max-w-2xl mx-auto"
-                            style={{
-                                fontFamily: "var(--font-poppins)",
-                                color: "var(--color-light-accent)"
-                            }}
-                        >
-                            Multiple ways to connect with us. We're here to help and support our community.
-                        </p>
-                    </motion.div>
-                </div>
-            </section>
+            <HeroSection heading={"Get in Touch"} subheading={"Multiple ways to connect with us. We're here to help and support our community."} />
 
             {/* Contact Info Cards */}
             <section className="py-16 -mt-12 relative z-10">

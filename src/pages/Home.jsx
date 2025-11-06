@@ -5,12 +5,14 @@ import Welcome from '../components/layout/Welcome'
 import Activities from '../components/layout/Activities'
 import CTA from '../components/layout/CTA'
 import AppWithSplash from '../components/loader/AppWithSplash'
+import Spinner from '../components/common/Spinner'
+
 
 const Home = () => {
     return ( 
         <AppWithSplash>
         <div className=''> 
-            <Hero />
+            <Hero /> 
             <Quicklink />
             <Welcome />
             <Activities />

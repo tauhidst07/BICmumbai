@@ -5,9 +5,11 @@ import App from './App.jsx'
 import { BrowserRouter } from 'react-router-dom';
 import './i18n.js'
 import { AppProvider } from './context/AppContext.jsx';
+import ScrollToTop from './components/ScrollToTop.jsx';
 
 createRoot(document.getElementById('root')).render(
-  <BrowserRouter>
+  <BrowserRouter> 
+  <ScrollToTop/>
     <AppProvider>
       <App />
     </AppProvider>

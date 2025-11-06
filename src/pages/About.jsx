@@ -3,6 +3,7 @@ import { motion } from "framer-motion";
 import { Calendar, Users, Heart, BookOpen, Award, Target, Globe } from "lucide-react";
 import StatCard from "../components/common/StatCard";
 import SplashScreen from "../components/loader/SplashScreen";
+import HeroSection from "../components/common/HeroSection";
 
 const About = () => {
   const milestones = [
@@ -41,54 +42,7 @@ const About = () => {
   return (
     <>
       {/* ================= HERO SECTION ================= */}
-      <section 
-        className="relative py-24 lg:py-32 overflow-hidden"
-        style={{
-          background: "linear-gradient(135deg, var(--color-primaryCustom) 0%, var(--color-secondaryCustom) 100%)"
-        }}
-      >
-        {/* Decorative background elements */}
-        <div className="absolute top-0 right-0 w-96 h-96 rounded-full opacity-10 blur-3xl"
-          style={{ backgroundColor: "var(--color-bright-accent)" }}
-        />
-        <div className="absolute bottom-0 left-0 w-80 h-80 rounded-full opacity-10 blur-3xl"
-          style={{ backgroundColor: "var(--color-light-accent)" }}
-        />
-
-        <div className="relative max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-          <motion.div
-            initial={{ opacity: 0, y: 30 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.7 }}
-          >
-            <h1 
-              className="text-4xl md:text-5xl lg:text-6xl font-bold mb-6"
-              style={{
-                fontFamily: "var(--font-playfairDisplay)",
-                color: "var(--color-white)"
-              }}
-            >
-              About Our Center
-            </h1>
-            
-            <div className="flex items-center justify-center gap-3 mb-6">
-              <div className="h-[2px] w-16" style={{ backgroundColor: "var(--color-bright-accent)" }} />
-              <div className="w-2 h-2 rounded-full" style={{ backgroundColor: "var(--color-bright-accent)" }} />
-              <div className="h-[2px] w-16" style={{ backgroundColor: "var(--color-bright-accent)" }} />
-            </div>
-
-            <p 
-              className="text-lg md:text-xl lg:text-2xl max-w-3xl mx-auto leading-relaxed"
-              style={{
-                fontFamily: "var(--font-poppins)",
-                color: "var(--color-light-accent)"
-              }}
-            >
-              Building a Strong Community Rooted in Faith and Service
-            </p>
-          </motion.div>
-        </div>
-      </section>
+      <HeroSection heading={"About Our Center"} subheading={"Building a Strong Community Rooted in Faith and Service"}/>
 
       {/* ================= INTRO QUOTE ================= */}
       <section className="py-16 bg-white">

@@ -82,7 +82,7 @@ const Navbar = () => {
         </Link>
 
         {/* Navigation links - Desktop */}
-        <div className={`hidden md:flex space-x-1 lg:space-x-2 items-center ${language == "URD" ? 'font-noto' : 'font-poppins'} text-primaryCustom`}>
+        <div className={`hidden md:flex space-x-1 lg:space-x-2 items-center ${language == "URD" ? 'font-noto flex-row-reverse' : 'font-poppins'} text-primaryCustom`}>
           {navlinks.map((link, i) => (
             <Link
               to={link.path}

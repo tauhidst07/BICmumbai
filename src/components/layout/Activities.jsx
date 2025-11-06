@@ -1,8 +1,11 @@
-import React from 'react'
+import React, { useContext } from 'react'
 import activities from '../../static/activities'
 import ActivityCard from '../common/ActivityCard'
 import Divider from '../common/Divider'
-const Activities = () => { 
+import AppContext from '../../context/AppContext'
+import { Spinner } from 'flowbite-react'
+const Activities = () => {  
+    const {loading,activities} = useContext(AppContext);
     return (
         <section className="py-8 bg-white">
             <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
@@ -13,8 +16,9 @@ const Activities = () => {
                    <Divider/>
                 </div>
                 <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-                 {
-                   activities.map((actitivity,i)=><ActivityCard key={i} activity={actitivity}/>)
+                 { 
+                 loading? <div className='w-full h-full flex justify-center items-center'> <Spinner/> </div>:
+                   activities.slice(0,3).map((actitivity,i)=><ActivityCard key={i} activity={actitivity}/>)
                  }
                 </div>
             </div> 
